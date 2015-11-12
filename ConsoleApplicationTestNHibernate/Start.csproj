@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E7F99BF6-44AA-4D4A-B7F3-6584858FFFE6}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{215C5B04-DEE7-4D01-8D6E-E0B6FDF751ED}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Model.Core</RootNamespace>
-    <AssemblyName>Model.Core</AssemblyName>
+    <RootNamespace>ConsoleApplicationTestNHibernate</RootNamespace>
+    <AssemblyName>ConsoleApplicationTestNHibernate</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -30,6 +32,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="HibernatingRhinos.Profiler.Appender">
+      <HintPath>..\..\..\NHibernate.Profiler-v3.0-Build-3087\HibernatingRhinos.Profiler.Appender.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\packages\Iesi.Collections.4.0.0.4000\lib\net40\Iesi.Collections.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
       <Private>True</Private>
@@ -54,6 +62,9 @@
       <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\packages\NHibernate.4.0.4.4000\lib\net40\NHibernate.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -63,22 +74,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BidInnerDetail.cs" />
-    <Compile Include="BidDetail.cs" />
-    <Compile Include="ItemStatus.cs" />
-    <Compile Include="IInterceptable.cs" />
-    <Compile Include="Item.cs" />
-    <Compile Include="Bid.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Framework\Framework.csproj">
+      <Project>{a9836c47-5267-45cd-ae44-177166cab796}</Project>
+      <Name>Framework</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Model.Core.Aspects\Model.Core.Aspects.csproj">
       <Project>{01b6344e-c187-4562-89f2-0d18a024e6f9}</Project>
       <Name>Model.Core.Aspects</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\Model.Core\Model.csproj">
+      <Project>{e7f99bf6-44aa-4d4a-b7f3-6584858fffe6}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RepositoryNHUnity\RepositoryNHUnity.csproj">
+      <Project>{5ed7356c-5c1b-4f93-a471-fb08107c3481}</Project>
+      <Name>RepositoryNHUnity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Repository\Repository.Contract.csproj">
+      <Project>{b7013a0a-b0d8-470b-8f0b-ee42e11db8dc}</Project>
+      <Name>Repository.Contract</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

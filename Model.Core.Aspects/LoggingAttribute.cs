@@ -1,5 +1,5 @@
-﻿using Microsoft.Practices.Unity;
-using Microsoft.Practices.Unity.InterceptionExtension;
+﻿using Framework.Aspect.BaseClasses;
+
 namespace Model.Core.Aspects
 {
     public class LoggingAttribute : BaseInterceptionAttribute

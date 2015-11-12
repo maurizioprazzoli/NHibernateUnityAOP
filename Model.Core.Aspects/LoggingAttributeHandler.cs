@@ -1,4 +1,5 @@
-﻿using Microsoft.Practices.Unity.InterceptionExtension;
+﻿using Framework.Aspect.BaseClasses;
+using Microsoft.Practices.Unity.InterceptionExtension;
 using System;
 
 namespace Model.Core.Aspects

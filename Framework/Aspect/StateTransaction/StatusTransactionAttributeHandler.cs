@@ -1,10 +1,11 @@
-﻿using Microsoft.Practices.Unity.InterceptionExtension;
+﻿using Framework.Aspect.BaseClasses;
+using Microsoft.Practices.Unity.InterceptionExtension;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace Model.Core.Aspects
+namespace Framework.Aspect.StateTransaction
 {
     public class StatusTransactionAttributeHandler : BaseInterceptionAttributeHandler
     {

@@ -1,8 +1,12 @@
-﻿using Microsoft.Practices.Unity;
+﻿using Framework.UnityExtensionMethod;
+using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.InterceptionExtension;
 using Model.Core;
-using RepositoryNH;
+using Repository;
+using Repository.Contract;
+using RepositoryNHUnity;
 using System;
+using System.Collections.Generic;
 
 namespace ConsoleApplicationTestNHibernate
 {
@@ -10,24 +14,50 @@ namespace ConsoleApplicationTestNHibernate
     {
         static void Main(string[] args)
         {
-
-            HibernatingRhinos.Profiler.Appender.NHibernate.NHibernateProfiler.Initialize();
-
+            // Define unity repository
             var container = new UnityContainer();
+
+            // RegisterUnitOfwork
+            Dictionary<string, string> configuration = new Dictionary<string, string>();
+            configuration.Add("DataSource", "ITCPC1MAPR1");
+            configuration.Add("UserId", "sa");
+            configuration.Add("Password", "maurizio");
+            configuration.Add("Database", "NHibernateUnityAOP");
+            configuration.Add("ConnectTimeout", "30");
+            configuration.Add("DropAndCreateDatabaseSchema", "True");
+            container.RegisterType<IUnitOfWorkForContextDictionary, UnitOfWorkForContextDictionary>(new PerThreadLifetimeManager(), new InjectionMember[] { });
+            Func<IUnitOfWorkForContextDictionary> getUnitOfWorkForContextDictionary = () =>
+            {
+                return container.Resolve<IUnitOfWorkForContextDictionary>();
+            };
+            container.RegisterType<IUnitOfWorkFactory, UnitOfWorkFactory>(new InjectionMember[] {
+                                                                                                 new InjectionConstructor(new object[] {configuration, getUnitOfWorkForContextDictionary, container})
+                                                                                                }
+                                                                          );
+            // Add interception component
             container.AddNewExtension<Interception>();
 
-            container.RegisterType<Item, Item>(new InterceptionBehavior<PolicyInjectionBehavior>(),
-                                               new Interceptor<VirtualMethodInterceptor>(),
-                                               new AdditionalInterface<IInterceptable<Item>>());
+            // Register Item entity into container injecting Intercepted interface
+            container.RegisterTypeInterception<Item>();
 
-            Console.WriteLine("Start");
+            Console.WriteLine("Setup complete. Press any key to continue.");
             Console.ReadKey();
 
-            new Repository(container);
+            Guid item_guid = Guid.NewGuid();
 
-            Console.WriteLine("End");
+            //item.PlaceBid("bidDescription1", 1);
+            //item.PlaceBid("bidDescription1", 2);
 
-            Console.ReadKey();
+            Item item = container.Resolve<Item>();
+            item.Id = item_guid;
+            item.PlaceBid("bidDescription1", 1);
+            item.PlaceBid("bidDescription1", 2);
+
+            using (IUnitOfWork unitOfWork = container.Resolve<IUnitOfWorkFactory>().CreateUnitOfWork)
+            {
+                unitOfWork.ItemRepository.Add(item);
+                unitOfWork.Commit();
+            }
 
         }
     }

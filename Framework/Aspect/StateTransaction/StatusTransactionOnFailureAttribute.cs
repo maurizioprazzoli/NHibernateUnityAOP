@@ -1,11 +1,9 @@
 ﻿
-using System;
-namespace Model.Core.Aspects
+namespace Framework.Aspect.StateTransaction
 {
-    [AttributeUsage(AttributeTargets.Method)]
     public class StatusTransactionOnFailureAttribute : StatusTransactionAttribute
     {
-        public StatusTransactionOnFailureAttribute(byte statusToOnFailure)
+        public StatusTransactionOnFailureAttribute(object statusToOnFailure)
             : base(statusToOnSuccess: (byte?)null, statusToOnFailure: statusToOnFailure)
         { }
     }

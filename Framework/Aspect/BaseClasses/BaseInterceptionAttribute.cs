@@ -2,7 +2,8 @@
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.InterceptionExtension;
 using System;
-namespace Model.Core.Aspects
+
+namespace Framework.Aspect.BaseClasses
 {
 
     public class BaseInterceptionAttribute : HandlerAttribute

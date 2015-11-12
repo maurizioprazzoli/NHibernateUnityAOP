@@ -1,8 +1,7 @@
 ﻿
-using System;
-namespace Model.Core.Aspects
+
+namespace Framework.Aspect.StateTransaction
 {
-    [AttributeUsage(AttributeTargets.Method)]
     public class StatusTransactionOnSuccessAttribute : StatusTransactionAttribute
     {
         public StatusTransactionOnSuccessAttribute(object statusToOnSuccess)

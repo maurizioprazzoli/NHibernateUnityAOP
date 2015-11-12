@@ -3,22 +3,15 @@
                    assembly="Model.Core"
                    namespace="Model.Core">
 
-  <class name="Item" lazy="false">
-    <cache include="all" usage="read-write"/>
+  <class name="Bid" lazy="false">
 
     <id name="Id" type="Guid" unsaved-value="00000000-0000-0000-0000-000000000000">
-      <generator class="assigned" />
+      <generator class="assigned"/>
     </id>
 
     <property name="Description" />
 
-    <property name="State" />
-
-    <bag name="Bids" lazy="false" inverse="true" cascade="all">
-      <cache usage="read-write"></cache>
-      <key column="idItem"></key>
-      <one-to-many class="Bid" />
-    </bag>
+    <many-to-one name="Item" column="idItem" class="Item"   />
 
   </class>
 

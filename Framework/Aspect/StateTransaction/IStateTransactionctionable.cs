@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Model.Core.Aspects
+namespace Framework.Aspect.StateTransaction
 {
     public struct AllowedTransaction<TStatus>
     {

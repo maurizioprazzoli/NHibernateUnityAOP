@@ -1,6 +1,6 @@
 ﻿using Microsoft.Practices.Unity.InterceptionExtension;
 
-namespace Model.Core.Aspects
+namespace Framework.Aspect.BaseClasses
 {
     public abstract class BaseInterceptionAttributeHandler : ICallHandler
     {

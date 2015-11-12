@@ -4,7 +4,7 @@ using NHibernate;
 using System;
 using System.Linq;
 
-namespace RepositoryNH
+namespace RepositoryNHUnity
 {
     public class UnityDataBindingIntercepter : EmptyInterceptor
     {

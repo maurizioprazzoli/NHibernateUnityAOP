@@ -3,7 +3,7 @@ using NHibernate.Cfg;
 using NHibernate.Dialect;
 using NHibernate.Tool.hbm2ddl;
 
-namespace RepositoryNH
+namespace RepositoryNHUnity
 {
     public class Repository
     {
