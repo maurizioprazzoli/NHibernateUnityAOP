@@ -1,4 +1,4 @@
-﻿using Framework.UnityExtensionMethod;
+﻿using Framework.Aspect.UnityExtensionMethod;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.InterceptionExtension;
 using Model.Core;

@@ -23,15 +23,17 @@ namespace RepositoryNHUnity
 
             var dropAndCreateDatabaseSchema = Convert.ToBoolean(configuration["DropAndCreateDatabaseSchema"]);
             var useSecondLevelCache = Convert.ToBoolean(configuration["UseSecondLevelCache"]);
-            var generateStatistics = Convert.ToBoolean(configuration["GenerateStatistics"]);
+            var useNHibernateSimpleProfiler = Convert.ToBoolean(configuration["UseNHibernateSimpleProfiler"]);
 
             // Initialize
             Configuration cfg = new Configuration().DataBaseIntegration(db =>
                                                    {
                                                        db.ConnectionString = connectionStringBuilder.ConnectionString;
                                                        db.Dialect<MsSql2008Dialect>();
-                                                   })
-                                                   .AddAssembly(Assembly.GetExecutingAssembly());
+                                                   });
+
+            //Initializate assembly that contains mapping configuration
+            cfg.AddAssembly(Assembly.Load(configuration["ConfigurationAssembly"]));
 
             if (dropAndCreateDatabaseSchema)
             {
@@ -42,15 +44,15 @@ namespace RepositoryNHUnity
 
             if (useSecondLevelCache)
             {
-                cfg.SetProperty("cache.use_second_level_cache", "true");
-                cfg.SetProperty("cache.provider_class", "NHibernate.Caches.SysCache.SysCacheProvider, NHibernate.Caches.SysCache");
+                cfg.SetProperty(NHibernate.Cfg.Environment.UseSecondLevelCache, "true");
+                cfg.SetProperty(NHibernate.Cfg.Environment.CacheProvider, "NHibernate.Caches.SysCache.SysCacheProvider, NHibernate.Caches.SysCache");
             }
             else
             {
-                cfg.SetProperty("cache.use_second_level_cache", "false");
+                cfg.SetProperty(NHibernate.Cfg.Environment.UseSecondLevelCache, "false");
             }
 
-            if (generateStatistics)
+            if (useNHibernateSimpleProfiler)
             {
                 cfg.SetProperty(NHibernate.Cfg.Environment.GenerateStatistics, "true");
             }
@@ -61,7 +63,14 @@ namespace RepositoryNHUnity
             // Create session factory from configuration object
             var sessionFactory = cfg.BuildSessionFactory();
 
+            // Set Up Interception
             intercepter.SessionFactory = sessionFactory;
+
+            // Set Up NHibernate profiler
+            if (useNHibernateSimpleProfiler)
+            {
+                NHibernateSimpleProfiler.Profiler.SetSessionFactory = sessionFactory;
+            }
 
             return sessionFactory;
         }

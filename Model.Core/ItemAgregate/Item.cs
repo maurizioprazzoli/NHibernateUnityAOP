@@ -1,5 +1,6 @@
 ﻿using Framework.Aspect.Interfaces;
 using Framework.Aspect.StateTransaction;
+using Framework.Aspect.UnityExtensionMethod;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,7 +56,9 @@ namespace Model.Core
 
         public Item()
         {
-            //Console.WriteLine(this.GetType().GetInterfaces().ToString());
+            if (!this.IsRegisteredTypeInterception())
+                throw new Exception("Item must call by container");
+
             this.Bids = new List<Bid>();
         }
 

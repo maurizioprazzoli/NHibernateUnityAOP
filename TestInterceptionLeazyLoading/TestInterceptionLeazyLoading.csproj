@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1C2C9105-A978-4D13-9953-EF88DF2B3E3B}</ProjectGuid>
+    <ProjectGuid>{C5FD4347-A402-4225-9401-A0FFF80D038F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TestInterception</RootNamespace>
-    <AssemblyName>TestInterception</AssemblyName>
+    <RootNamespace>TestInterceptionLeazyLoading</RootNamespace>
+    <AssemblyName>TestInterceptionLeazyLoading</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -67,6 +67,10 @@
       <HintPath>..\packages\NHibernate.4.0.4.4000\lib\net40\NHibernate.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="NHibernate.Caches.SysCache, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=6876f2ea66c9f443, processorArchitecture=MSIL">
+      <HintPath>..\packages\NHibernate.Caches.SysCache.4.0.0.4000\lib\net40\NHibernate.Caches.SysCache.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <Choose>
@@ -82,10 +86,20 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="NHibernateHelper.cs" />
-    <Compile Include="TestRetrievingEntitiesSecondLevelCache.cs" />
-    <Compile Include="TestRetrievingEntitiesNoSecondLevelCache.cs" />
+    <Compile Include="BaseTestInterceptionClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestRetrievingEntitiesNoSecondLevelCache.cs" />
+    <Compile Include="TestRetrievingEntitiesNoSecondLevelCacheForceUseSessionForTransaction.cs" />
+    <Compile Include="TestRetrievingEntitiesSecondLevelCache.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Mapping\nhibernate-configuration.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Mapping\nhibernate-mapping.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Framework\Framework.csproj">
@@ -100,6 +114,10 @@
       <Project>{e7f99bf6-44aa-4d4a-b7f3-6584858fffe6}</Project>
       <Name>Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NHibernateProfiler\NHibernateSimpleProfiler.csproj">
+      <Project>{ba5d2364-e0bc-4bd5-a46d-206349863886}</Project>
+      <Name>NHibernateSimpleProfiler</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RepositoryNHUnity\RepositoryNHUnity.csproj">
       <Project>{5ed7356c-5c1b-4f93-a471-fb08107c3481}</Project>
       <Name>RepositoryNHUnity</Name>
@@ -110,7 +128,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <EmbeddedResource Include="Mapping\Bid.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapping\Item.hbm.xml" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

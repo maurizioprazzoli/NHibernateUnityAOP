@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 
-namespace TestInterceptionNoLeazyLoading
+namespace TestInterceptionLeazyLoading
 {
     [TestClass]
     public class TestRetrievingEntitiesNoSecondLevelCache : BaseTestInterceptionClass
@@ -18,7 +18,7 @@ namespace TestInterceptionNoLeazyLoading
             configuration.Add("UseSecondLevelCache", "False");
             configuration.Add("UseNHibernateSimpleProfiler", "True");
             configuration.Add("IsForceUseSessionForTransaction", "False");
-            configuration.Add("ConfigurationAssembly", "TestInterceptionNoLeazyLoading");
+            configuration.Add("ConfigurationAssembly", "RepositoryNHUnity");
         }
     }
 }

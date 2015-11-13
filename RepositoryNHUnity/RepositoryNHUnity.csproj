@@ -95,6 +95,10 @@
       <Project>{e7f99bf6-44aa-4d4a-b7f3-6584858fffe6}</Project>
       <Name>Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NHibernateProfiler\NHibernateSimpleProfiler.csproj">
+      <Project>{ba5d2364-e0bc-4bd5-a46d-206349863886}</Project>
+      <Name>NHibernateSimpleProfiler</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Repository\Repository.Contract.csproj">
       <Project>{b7013a0a-b0d8-470b-8f0b-ee42e11db8dc}</Project>
       <Name>Repository.Contract</Name>

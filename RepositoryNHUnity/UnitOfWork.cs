@@ -10,11 +10,13 @@ namespace RepositoryNHUnity
         private ITransaction transaction;
 
         private IItemRepository itemRepository;
+        bool isUseOneSessionForTransaction;
 
-        public UnitOfWork(ISession session)
+        public UnitOfWork(ISession session, bool isUseOneSessionForTransaction)
         {
             this.session = session;
             this.transaction = session.BeginTransaction();
+            this.isUseOneSessionForTransaction = isUseOneSessionForTransaction;
         }
 
         public void Commit()
@@ -54,7 +56,11 @@ namespace RepositoryNHUnity
             {
                 transaction.Rollback();
             }
-            session.Close();
+
+            if (isUseOneSessionForTransaction)
+            {
+                session.Close();
+            }
         }
 
     }

@@ -1,6 +1,5 @@
 ﻿using Microsoft.Practices.Unity;
 using NHibernate;
-using NHibernate.Stat;
 using Repository;
 using Repository.Contract;
 using System;
@@ -15,32 +14,38 @@ namespace RepositoryNHUnity
         private Dictionary<string, string> configuration { get; set; }
         Func<IUnitOfWorkForContextDictionary> getUnitOfWorkForContextDictionary;
         private ISession currentSession;
+        private bool isForceUseOneSessionForTransaction;
 
         public UnitOfWorkFactory(Dictionary<string, string> configuration, Func<IUnitOfWorkForContextDictionary> getUnitOfWorkForContextDictionary, IUnityContainer container)
         {
             this.configuration = configuration;
+
             this.getUnitOfWorkForContextDictionary = getUnitOfWorkForContextDictionary;
             this.sessionFactory = NHConfiguration.ConfigureNHibernate(configuration, container);
+
+            this.isForceUseOneSessionForTransaction = Convert.ToBoolean(configuration["IsForceUseSessionForTransaction"]);
+        }
+
+        private void validateConfiguration()
+        {
+
         }
 
         public IUnitOfWork CreateUnitOfWork
         {
             get
             {
-                return new UnitOfWork(getNHSession());
+                return new UnitOfWork(getNHSession(), isForceUseOneSessionForTransaction);
             }
         }
 
         private ISession getNHSession()
         {
-            return sessionFactory.OpenSession();
-            
-            if (getUnitOfWorkForContextDictionary != null)
+            if (!this.isForceUseOneSessionForTransaction)
             {
                 if (!getUnitOfWorkForContextDictionary().ContainsKey("currentSession"))
                 {
                     getUnitOfWorkForContextDictionary()["currentSession"] = sessionFactory.OpenSession();
-                    currentSession = (ISession)getUnitOfWorkForContextDictionary()["currentSession"];
                 }
                 return (ISession)getUnitOfWorkForContextDictionary()["currentSession"];
             }
@@ -48,11 +53,6 @@ namespace RepositoryNHUnity
             {
                 return sessionFactory.OpenSession();
             }
-        }
-
-        public IStatistics Statistics()
-        {
-            return this.sessionFactory.Statistics;
         }
     }
 }

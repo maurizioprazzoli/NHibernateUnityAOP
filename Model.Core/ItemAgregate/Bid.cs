@@ -11,7 +11,7 @@ namespace Model.Core
 
         public virtual Int32 Price { set; get; }
 
-        public string Description { get; set; }
+        public virtual string Description { get; set; }
 
         public Bid()
         { }

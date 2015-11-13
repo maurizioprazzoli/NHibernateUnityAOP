@@ -1,11 +1,10 @@
-﻿
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 
-namespace TestInterceptionNoLeazyLoading
+namespace TestInterceptionLeazyLoading
 {
     [TestClass]
-    public class TestRetrievingEntitiesNoSecondLevelCache : BaseTestInterceptionClass
+    public class TestRetrievingEntitiesNoSecondLevelCacheForceUseSessionForTransaction : BaseTestInterceptionClass
     {
         public override void ComposeConfiguration(Dictionary<string, string> configuration)
         {
@@ -17,8 +16,8 @@ namespace TestInterceptionNoLeazyLoading
             configuration.Add("DropAndCreateDatabaseSchema", "True");
             configuration.Add("UseSecondLevelCache", "False");
             configuration.Add("UseNHibernateSimpleProfiler", "True");
-            configuration.Add("IsForceUseSessionForTransaction", "False");
-            configuration.Add("ConfigurationAssembly", "TestInterceptionNoLeazyLoading");
+            configuration.Add("IsForceUseSessionForTransaction", "True");
+            configuration.Add("ConfigurationAssembly", "RepositoryNHUnity");     
         }
     }
 }

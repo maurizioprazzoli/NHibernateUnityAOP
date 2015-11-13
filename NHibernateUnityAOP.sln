@@ -7,17 +7,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Start", "ConsoleApplication
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model.Core\Model.csproj", "{E7F99BF6-44AA-4D4A-B7F3-6584858FFFE6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoryNH", "RepositoryNH\RepositoryNH.csproj", "{35F439EB-B343-48D2-A7D3-92524E59D3B7}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model.Core.Aspects", "Model.Core.Aspects\Model.Core.Aspects.csproj", "{01B6344E-C187-4562-89F2-0D18A024E6F9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework", "Framework\Framework.csproj", "{A9836C47-5267-45CD-AE44-177166CAB796}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository.Contract", "Repository\Repository.Contract.csproj", "{B7013A0A-B0D8-470B-8F0B-EE42E11DB8DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestInterception", "TestInterception\TestInterception.csproj", "{1C2C9105-A978-4D13-9953-EF88DF2B3E3B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestInterceptionNoLeazyLoading", "TestInterception\TestInterceptionNoLeazyLoading.csproj", "{1C2C9105-A978-4D13-9953-EF88DF2B3E3B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoryNHUnity", "RepositoryNHUnity\RepositoryNHUnity.csproj", "{5ED7356C-5C1B-4F93-A471-FB08107C3481}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHibernateSimpleProfiler", "NHibernateProfiler\NHibernateSimpleProfiler.csproj", "{BA5D2364-E0BC-4BD5-A46D-206349863886}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestInterceptionLeazyLoading", "TestInterceptionLeazyLoading\TestInterceptionLeazyLoading.csproj", "{C5FD4347-A402-4225-9401-A0FFF80D038F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,10 +35,6 @@ Global
 		{E7F99BF6-44AA-4D4A-B7F3-6584858FFFE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E7F99BF6-44AA-4D4A-B7F3-6584858FFFE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E7F99BF6-44AA-4D4A-B7F3-6584858FFFE6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{35F439EB-B343-48D2-A7D3-92524E59D3B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{35F439EB-B343-48D2-A7D3-92524E59D3B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{35F439EB-B343-48D2-A7D3-92524E59D3B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{35F439EB-B343-48D2-A7D3-92524E59D3B7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{01B6344E-C187-4562-89F2-0D18A024E6F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{01B6344E-C187-4562-89F2-0D18A024E6F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{01B6344E-C187-4562-89F2-0D18A024E6F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -57,6 +55,14 @@ Global
 		{5ED7356C-5C1B-4F93-A471-FB08107C3481}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5ED7356C-5C1B-4F93-A471-FB08107C3481}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5ED7356C-5C1B-4F93-A471-FB08107C3481}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA5D2364-E0BC-4BD5-A46D-206349863886}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA5D2364-E0BC-4BD5-A46D-206349863886}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA5D2364-E0BC-4BD5-A46D-206349863886}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA5D2364-E0BC-4BD5-A46D-206349863886}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5FD4347-A402-4225-9401-A0FFF80D038F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5FD4347-A402-4225-9401-A0FFF80D038F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5FD4347-A402-4225-9401-A0FFF80D038F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5FD4347-A402-4225-9401-A0FFF80D038F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
