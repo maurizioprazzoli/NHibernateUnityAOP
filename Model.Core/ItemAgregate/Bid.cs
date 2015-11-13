@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace Model.Core
@@ -13,6 +14,8 @@ namespace Model.Core
 
         public virtual string Description { get; set; }
 
+        public virtual IList<BidDetail> BidDetails { get; set; }
+
         public Bid()
         { }
 
@@ -22,6 +25,18 @@ namespace Model.Core
             this.Item = item;
             this.Description = bidDescription;
             this.Price = bidPrice;
+            this.BidDetails = new List<BidDetail>();
+        }
+
+        public virtual void AddTwoBidDetail()
+        {
+            for (var i = 0; i <= 2; i++)
+            {
+                BidDetail bidDetail = new BidDetail();
+                bidDetail.Bid = this;
+                bidDetail.Description = "bidDetailDescription" + i.ToString();
+                this.BidDetails.Add(bidDetail);
+            }
         }
 
         public override string ToString()

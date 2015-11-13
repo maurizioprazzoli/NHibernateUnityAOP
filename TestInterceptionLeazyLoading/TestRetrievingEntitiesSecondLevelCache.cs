@@ -17,7 +17,8 @@ namespace TestInterceptionLeazyLoading
             configuration.Add("UseSecondLevelCache", "True");
             configuration.Add("UseNHibernateSimpleProfiler", "True");
             configuration.Add("IsForceUseSessionForTransaction", "False");
-            configuration.Add("ConfigurationAssembly", "TestInterceptionLeazyLoading");            
+            configuration.Add("ConfigurationAssembly", "TestInterceptionLeazyLoading");
+            configuration.Add("UseUnityInterception", "True");
         }
     }
 }

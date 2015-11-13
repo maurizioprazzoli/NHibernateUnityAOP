@@ -18,6 +18,7 @@ namespace TestInterceptionNoLeazyLoading
             configuration.Add("UseNHibernateSimpleProfiler", "True");
             configuration.Add("IsForceUseSessionForTransaction", "True");
             configuration.Add("ConfigurationAssembly", "TestInterceptionNoLeazyLoading");
+            configuration.Add("UseUnityInterception", "True");
         }
     }
 }

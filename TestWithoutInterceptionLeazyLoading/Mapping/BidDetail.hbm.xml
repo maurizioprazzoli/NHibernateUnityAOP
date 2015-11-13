@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="Model.Core"
+                   namespace="Model.Core">
+
+  <class name="BidDetail" lazy="true">
+
+    <id name="Id" type="Guid">
+      <generator class="assigned" />
+    </id>
+
+    <many-to-one name="Bid" column="idBid" class="Bid" />
+
+    <property name="Description" />
+
+  </class>
+
+</hibernate-mapping>

@@ -63,6 +63,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ItemAgregate\BidDetail.cs" />
     <Compile Include="ItemAgregate\ItemStatus.cs" />
     <Compile Include="ItemAgregate\Item.cs" />
     <Compile Include="ItemAgregate\Bid.cs" />

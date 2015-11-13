@@ -13,6 +13,12 @@
 
     <many-to-one name="Item" column="idItem" class="Item"   />
 
+    <bag name="BidDetails" lazy="false" inverse="true" access="property">
+      <cache usage="read-write"/>
+      <key column="idBid"></key>
+      <one-to-many class="BidDetail" />
+    </bag>
+
   </class>
 
 </hibernate-mapping>

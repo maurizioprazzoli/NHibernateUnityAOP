@@ -45,59 +45,6 @@ namespace TestInterceptionLeazyLoading
         }
 
         [TestMethod]
-        public void InterceptedMethodIsCalledWhenObjectIsConstructedFromContainer()
-        {
-            Guid item_guid = Guid.NewGuid();
-            Item item = container.Resolve<Item>();
-            item.Id = item_guid;
-            Assert.IsTrue(((IStateTransactionctionable<ItemStatus>)item).State == ItemStatus.ITNUL);
-            item.PlaceBid("bidDescription1", 1);
-            Assert.IsTrue(((IStateTransactionctionable<ItemStatus>)item).State == ItemStatus.ITINS);
-        }
-
-        [TestMethod]
-        public void InterceptedObjectCanBeInsertedAndRetrievedFromDatabase()
-        {
-            Guid item_guid = Guid.NewGuid();
-
-            Item item = container.Resolve<Item>();
-            item.Id = item_guid;
-            item.PlaceBid("bidDescription1", 1);
-
-            using (IUnitOfWork unitOfWork = container.Resolve<IUnitOfWorkFactory>().CreateUnitOfWork)
-            {
-                unitOfWork.ItemRepository.Add(item);
-                unitOfWork.Commit();
-            }
-
-            Item itemRetrieved;
-
-            using (IUnitOfWork unitOfWork = container.Resolve<IUnitOfWorkFactory>().CreateUnitOfWork)
-            {
-                itemRetrieved = unitOfWork.ItemRepository.GetById(item_guid);
-                unitOfWork.Commit();
-            }
-
-            Assert.IsTrue(itemRetrieved != null);
-        }
-
-        [TestMethod]
-        public void InterceptedObjectCanBeInsertedIntoDatabase()
-        {
-            Guid item_guid = Guid.NewGuid();
-            Item item = container.Resolve<Item>();
-            item.Id = item_guid;
-            item.PlaceBid("bidDescription1", 1);
-
-            // Two query Expected
-            using (IUnitOfWork unitOfWork = container.Resolve<IUnitOfWorkFactory>().CreateUnitOfWork)
-            {
-                unitOfWork.ItemRepository.Add(item);
-                unitOfWork.Commit();
-            }
-        }
-
-        [TestMethod]
         public virtual void InterceptedMethodCanCalledForObjectInsertedAndRetrievedFromDatabase()
         {
             Guid item_guid = Guid.NewGuid();
@@ -106,6 +53,7 @@ namespace TestInterceptionLeazyLoading
             {
                 Item item = container.Resolve<Item>();
                 item.Id = item_guid;
+                item.PlaceBid("BidDescription", 1);
                 unitOfWork.ItemRepository.Add(item);
                 unitOfWork.Commit();
             }

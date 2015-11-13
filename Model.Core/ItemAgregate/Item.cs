@@ -22,7 +22,7 @@ namespace Model.Core
         public virtual string TestMethod()
         {
             string outputString = "";
-            foreach(var bid in Bids)
+            foreach (var bid in Bids)
             {
                 outputString += bid.ToString();
             }
@@ -35,6 +35,7 @@ namespace Model.Core
         {
             Bid bid = new Bid(this, bidDescription, bidPrice);
             this.Bids.Add(bid);
+            bid.AddTwoBidDetail();
         }
 
         [StatusTransactionOnSuccess(statusToOnSuccess: ItemStatus.ITEND)]
@@ -56,8 +57,8 @@ namespace Model.Core
 
         public Item()
         {
-            if (!this.IsRegisteredTypeInterception())
-                throw new Exception("Item must call by container");
+            //if (!this.IsRegisteredTypeInterception())
+            //    throw new Exception("Item must call by container");
 
             this.Bids = new List<Bid>();
         }

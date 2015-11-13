@@ -22,20 +22,20 @@ namespace TestInterceptionLeazyLoading
             configuration.Add("UseSecondLevelCache", "False");
             configuration.Add("UseNHibernateSimpleProfiler", "True");
             configuration.Add("IsForceUseSessionForTransaction", "True");
-            configuration.Add("ConfigurationAssembly", "TestInterceptionLeazyLoading");
-            configuration.Add("UseUnityInterception", "True");
+            configuration.Add("ConfigurationAssembly", "TestWithoutInterceptionLeazyLoading");
+            configuration.Add("UseUnityInterception", "False");
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NHibernate.LazyInitializationException))]
         public override void InterceptedMethodCanCalledForObjectInsertedAndRetrievedFromDatabase()
         {
             Guid item_guid = Guid.NewGuid();
 
             using (IUnitOfWork unitOfWork = container.Resolve<IUnitOfWorkFactory>().CreateUnitOfWork)
             {
-                Item item = container.Resolve<Item>();
+                Item item = new Item();
                 item.Id = item_guid;
+                item.PlaceBid("bidDescription1", 1);
                 unitOfWork.ItemRepository.Add(item);
                 unitOfWork.Commit();
             }
@@ -49,7 +49,7 @@ namespace TestInterceptionLeazyLoading
             }
 
             Assert.IsTrue(((IStateTransactionctionable<ItemStatus>)itemRetrieved).State == ItemStatus.ITNUL);
-            itemRetrieved.PlaceBid("bidDescription1", 1);
+            itemRetrieved.PlaceBid("bidDescription2", 1);
         }
     }
 }

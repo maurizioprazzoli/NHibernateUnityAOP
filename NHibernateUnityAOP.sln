@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHibernateSimpleProfiler", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestInterceptionLeazyLoading", "TestInterceptionLeazyLoading\TestInterceptionLeazyLoading.csproj", "{C5FD4347-A402-4225-9401-A0FFF80D038F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestWithoutInterceptionLeazyLoading", "TestWithoutInterceptionLeazyLoading\TestWithoutInterceptionLeazyLoading.csproj", "{CE026D96-6B05-46A7-816A-4F0408B866B5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{C5FD4347-A402-4225-9401-A0FFF80D038F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5FD4347-A402-4225-9401-A0FFF80D038F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5FD4347-A402-4225-9401-A0FFF80D038F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE026D96-6B05-46A7-816A-4F0408B866B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE026D96-6B05-46A7-816A-4F0408B866B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE026D96-6B05-46A7-816A-4F0408B866B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE026D96-6B05-46A7-816A-4F0408B866B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

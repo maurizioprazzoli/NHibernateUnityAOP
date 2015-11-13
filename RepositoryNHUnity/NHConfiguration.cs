@@ -24,6 +24,7 @@ namespace RepositoryNHUnity
             var dropAndCreateDatabaseSchema = Convert.ToBoolean(configuration["DropAndCreateDatabaseSchema"]);
             var useSecondLevelCache = Convert.ToBoolean(configuration["UseSecondLevelCache"]);
             var useNHibernateSimpleProfiler = Convert.ToBoolean(configuration["UseNHibernateSimpleProfiler"]);
+            var useUnityInterception = Convert.ToBoolean(configuration["UseUnityInterception"]);
 
             // Initialize
             Configuration cfg = new Configuration().DataBaseIntegration(db =>
@@ -58,8 +59,10 @@ namespace RepositoryNHUnity
             }
 
             var intercepter = new UnityDataBindingIntercepter(container);
-            cfg.SetInterceptor(intercepter);
-
+            if (useUnityInterception)
+            {
+                cfg.SetInterceptor(intercepter);
+            }
             // Create session factory from configuration object
             var sessionFactory = cfg.BuildSessionFactory();
 

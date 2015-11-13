@@ -3,19 +3,19 @@
                    assembly="Model.Core"
                    namespace="Model.Core">
 
-  <class name="Bid" lazy="true">
-
+  <class name="Item" lazy="true">
+    
     <id name="Id" type="Guid" unsaved-value="00000000-0000-0000-0000-000000000000">
-      <generator class="assigned"/>
+      <generator class="assigned" />
     </id>
 
-    <property name="Description" />
+    <property name="Description"/>
 
-    <many-to-one name="Item" column="idItem" class="Item" />
+    <property name="State" />
 
-    <bag name="BidDetails" lazy="true" inverse="true" access="property">
-      <key column="idBid"></key>
-      <one-to-many class="BidDetail" />
+    <bag name="Bids" lazy="true" inverse="true" cascade="all">
+      <key column="idItem"></key>
+      <one-to-many class="Bid" />
     </bag>
 
   </class>

@@ -133,6 +133,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Mapping\Item.hbm.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapping\BidDetail.hbm.xml" />
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
